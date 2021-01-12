@@ -1,0 +1,69 @@
+{
+    "name": "ecflow-syntax",
+    "displayName": "ecFlow Syntax Highlighting",
+    "description": "Language support for ecFlow shell scripts and definition files",
+    "version": "1.0.0",
+    "publisher": "ajdawson",
+    "repository": {
+        "url": "https://github.com/ajdawson/vscode-ecflow-syntax"
+    },
+    "bugs": {
+        "url": "https://github.com/ajdawson/vscode-ecflow-sytnax"
+    },
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "engines": {
+        "vscode": "^1.52.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "keywords": [
+        "ecflow"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "ecflow-shell",
+                "aliases": [
+                    "ecflow-shell"
+                ],
+                "extensions": [
+                    ".ecf",
+                    ".sms"
+                ],
+                "configuration": "./ecflow-shell-configuration.json"
+            },
+            {
+                "id": "ecflow-def",
+                "aliases": [
+                    "ecflow-def",
+                    "sms-def"
+                ],
+                "extensions": [
+                    ".def"
+                ],
+                "configuration": "./ecflow-def-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "ecflow-shell",
+                "scopeName": "source.ecflow-shell",
+                "path": "./syntaxes/ecflow-shell.tmLanguage.json"
+            },
+            {
+                "language": "ecflow-def",
+                "scopeName": "source.ecflow-def",
+                "path": "./syntaxes/ecflow-def.tmLanguage.json"
+            }
+        ]
+    },
+    "devDependencies": {
+        "vsce": "^1.96.1"
+    },
+    "scripts": {
+        "build": "node src/ecflow-shell-grammar/builder.js",
+        "package": "vsce package",
+        "deploy": "vsce publish"
+    }
+}

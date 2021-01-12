@@ -1,0 +1,35 @@
+%manual
+  This is an ecFlow manual page
+%end
+
+# ecFlow include directives are highlighted
+%include <some_header.h>
+%includenopp <some_non_preprocessed_header.h>
+%includeonce <side_effects_header.h>
+%include "local_header.h"
+%include <%VARIABLE_HEADER:default_header.h%>
+
+# ecFlow variables, possibly with default values, are also highlighted.
+echo %REQUIRED_VAR%
+echo %OPTIONAL_VAR:0%
+
+# This also works inside strings
+echo "The value of REQUIRED_VAR is %REQUIRED_VAR%!"
+echo "The value of OPTIONAL_VAR is %OPTIONAL_VAR:0%"
+
+# Shell variables remain properly highlighted when used as default values for
+# ecFlow variables
+some_value=%SOME_ECFLOW_VAR:${SOME_SHELL_VAR:-"default"}%
+
+# Again, this even works inside strings
+echo "The value of SOME_ECFLOW_VAR is %SOME_ECFLOW_VAR:${SOME_SHELL_VAR:-default}%"
+
+# Block comments are rendered like comments
+%comment
+  This is a block comment that will be removed by the ecFlow preprocessor
+%end
+
+# ecFlow syntax is disable inside nopp blocks
+%nopp
+  echo "%MY_VAR:default% is treated as a string literal"
+%end

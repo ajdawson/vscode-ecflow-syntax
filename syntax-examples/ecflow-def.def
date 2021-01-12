@@ -1,0 +1,17 @@
+# A simple suite definition
+suite simple
+  edit MODE 'normal'
+  family main
+    repeat date YMD 20200101 20201231 5
+    task setup
+    task worker
+      trigger setup == complete
+  endfamily
+  family lag
+    repeat date YMD 20200101 20201231 5
+    trigger main:YMD > lag:YMD or main == complete
+    task archive
+    task cleanup
+      trigger archive == complete
+  endfamily
+endsuite

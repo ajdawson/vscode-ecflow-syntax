@@ -1,0 +1,20 @@
+{
+	"comments": {
+		"lineComment": "#"
+	},
+	"brackets": [
+		["(", ")"]
+	],
+	"autoClosingPairs": [
+		["(", ")"],
+		{ "open": "\"", "close": "\"", "notIn": ["string"] }
+	],
+	"surroundingPairs": [
+		["(", ")"],
+		["\"", "\""]
+	],
+	"indentationRules": {
+		"increaseIndentPattern": "^\\s*((suite\\s+.*)|(family\\s+.*)).*$",
+		"decreaseIndentPattern": "^\\s*(endsuite|endfamily).*"
+	}
+}

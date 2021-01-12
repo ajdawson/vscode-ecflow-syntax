@@ -1,0 +1,144 @@
+{
+	"information_for_contributors": [
+        "This is just the extra parts of the shell grammar required for ecFlow scripts.",
+        "This file should be combined with the `shell-unix-bash.tmLanguage.json file using the `build.py` script."
+	],
+	"name": "EcFlow Shell Script",
+	"scopeName": "source.ecflow-shell",
+	"patterns": [
+		{
+			"include": "#ecflow-manual-block"
+		},
+		{
+			"include": "#ecflow-comment-block"
+		},
+		{
+			"include": "#ecflow-nopp-block"
+		},
+		{
+			"include": "#ecflow-include"
+		},
+		{
+			"include": "#ecflow-variable"
+		}
+	],
+	"repository": {
+		"ecflow-manual-block": {
+			"begin": "^%manual$",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.control.ecflow-shell"
+				}
+			},
+			"end": "^%end$",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.control.ecflow-shell"
+				}
+			},
+			"contentName": "comment.block.documentation.ecflow-shell"
+		},
+		"ecflow-comment-block": {
+			"begin": "^%comment$",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.control.ecflow-shell"
+				}
+			},
+			"end": "^%end$",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.control.ecflow-shell"
+				}
+			},
+			"contentName": "comment.block.ecflow-shell"
+		},
+		"ecflow-nopp-block": {
+			"name": "markup.raw.block.shell",
+			"begin": "^%nopp$",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.control.ecflow-shell"
+				}
+			},
+			"end": "^%end$",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.control.ecflow-shell"
+				}
+			},
+			"contentName": "meta.embedded.block.shell",
+			"patterns": [{
+				"include": "source.shell"
+			}]
+		},
+		"ecflow-include": {
+			"patterns": [
+				{
+					"match": "^%include(nopp|once)?\\s+(<)(.*)(>)$",
+					"captures": {
+						"2": {
+							"name": "punctuation.definition.include.ecflow-shell"
+						},
+						"3": {
+							"name": "punctuation.definition.include.ecflow-shell",
+							"patterns": [
+								{
+									"include": "#ecflow-variable"
+								}
+							]
+						},
+						"4": {
+							"name": "punctuation.definition.include.ecflow-shell"
+						}
+					},
+					"name": "keyword.control.ecflow-shell"
+				},
+				{
+					"match": "^%include(nopp|once)?\\s+(\".*\")$",
+					"captures": {
+						"2": {
+							"patterns": [
+								{
+									"include": "#string"
+								}
+							]
+						}
+					},
+					"name": "keyword.control.ecflow-shell"
+				}
+			]
+		},
+		"ecflow-variable": {
+			"patterns": [
+				{
+					"begin": "%(?!comment|end|include|manual|nopp)",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.variable.ecflow-shell"
+						}
+					},
+					"end": "%",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.variable.ecflow-shell"
+						}
+					},
+					"name": "variable.language.ecflow-shell",
+					"patterns": [
+						{
+							"match": ":",
+							"name": "keyword.operator.default.ecflow-shell"
+						},
+						{
+							"include": "#variable"
+						},
+						{
+							"include": "#string"
+						}
+					]
+				}
+			]
+		}
+	}
+}
