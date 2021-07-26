@@ -64,6 +64,7 @@
     "scripts": {
         "build": "node src/ecflow-shell-grammar/builder.js",
         "package": "vsce package",
-        "deploy": "vsce publish"
+        "deploy": "vsce publish",
+        "ci_consistency_check": "test/ci_consistency_check.sh"
     }
 }

@@ -1,4 +1,5 @@
 src/**
+test/ci_consistency_check.sh
 .vscode/**
 .vscode-test/**
 .gitignore
