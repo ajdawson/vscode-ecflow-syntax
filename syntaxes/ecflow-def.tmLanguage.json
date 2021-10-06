@@ -2,33 +2,33 @@
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "EcFlow Definition",
     "scopeName": "source.ecflow-def",
-	"patterns": [
-		{
-			"include": "#nodes"
-		},
-		{
-			"include": "#attributes"
-		},
-		{
-			"include": "#expressions"
-		},
-		{
-			"include": "#defstatus"
-		},
-		{
-			"include": "#repeats"
-		},
-		{
-			"include": "#comments"
-		}
-	],
-	"repository": {
-		"comments": {
-			"match": "#.*$",
-			"name": "comment.line.ecflow-def"
-		},
-		"nodes": {
-			"patterns": [
+    "patterns": [
+        {
+            "include": "#nodes"
+        },
+        {
+            "include": "#attributes"
+        },
+        {
+            "include": "#expressions"
+        },
+        {
+            "include": "#defstatus"
+        },
+        {
+            "include": "#repeats"
+        },
+        {
+            "include": "#comments"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "match": "#.*$",
+            "name": "comment.line.ecflow-def"
+        },
+        "nodes": {
+            "patterns": [
                 {
                     "match": "^\\s*(suite|family|task)\\s+([A-Za-z0-9_][A-Za-z0-9_\\.]*)",
                     "captures": {
@@ -43,37 +43,43 @@
                     "name": "storage.type.ecflow-def"
                 }
             ]
-		},
-		"attributes": {
-			"patterns": [
-				{
-					"match": "^\\s*(edit|label|event|limit|inlimit|meter)\\s+(.+?)\\s(.*)?",
-					"captures": {
-						"2": {
-							"name": "variable.other.ecflow_def"
-						},
-						"3": {
-							"name": "string.quoted.ecflow_def"
-						}
-					},
-					"name": "keyword.attribute.ecflow_def"
-				}
-			]
-		},
-		"expressions": {
-			"name": "keyword.operator.ecflow_def",
-			"match": "^\\s*(complete|late|trigger)\\s+(.*)",
-			"captures": {
-				"1": {
-					"name": "markup.italic.ecflow_def"
-				},
-				"2": {
-					"name": "constant.numeric.ecflow_def"
-				}
-			}
-		},
-		"defstatus": {
-            "match": "defstatus\\s+(aborted|active|complete|queued)",
+        },
+        "attributes": {
+            "patterns": [
+                {
+                    "match": "^\\s*(edit|label|event|limit|inlimit|meter)\\s+(.+?)\\s+(.*?)?\\s*(#.*)?$",
+                    "captures": {
+                        "2": {
+                            "name": "variable.other.ecflow_def"
+                        },
+                        "3": {
+                            "name": "string.quoted.ecflow_def"
+                        },
+                        "4": {
+                            "name": "comment.line.ecflow-def"
+                        }
+                    },
+                    "name": "keyword.attribute.ecflow_def"
+                }
+            ]
+        },
+        "expressions": {
+            "name": "keyword.operator.ecflow_def",
+            "match": "^\\s*(complete|late|trigger|time|cron|date|day|autoarchive|autorestore)\\s+(.*?)\\s*(#.*)?$",
+            "captures": {
+                "1": {
+                    "name": "markup.italic.ecflow_def"
+                },
+                "2": {
+                    "name": "constant.numeric.ecflow_def"
+                },
+                "3": {
+                    "name": "comment.line.ecflow-def"
+                }
+            }
+        },
+        "defstatus": {
+            "match": "^\\s*defstatus\\s+(aborted|active|complete|queued)",
             "captures": {
                 "1": {
                     "name": "constant.other.ecflow-def"
@@ -81,20 +87,23 @@
             },
             "name": "keyword.other.ecflow-def"
         },
-		"repeats": {
-			"match": "repeat\\s+(date|day|month|year|integer|enumerated|string)\\s+(.+?)\\s(.*)",
-			"captures": {
-				"1": {
-					"name": "variable.other.ecflow_def"
-				},
-				"2": {
-					"name": "constant.numeric.ecflow_def"
-				},
-				"3": {
-					"name": "string.quoted.ecflow_def"
-				}
-			},
-			"name": "keyword.other.ecflow_def"
-		}
-	}
+        "repeats": {
+            "match": "^\\s*repeat\\s+(date(?:list)?|day|month|year|integer|enumerated|string)\\s+(.+?)\\s+(.*?)\\s*(#.*)?$",
+            "captures": {
+                "1": {
+                    "name": "variable.other.ecflow_def"
+                },
+                "2": {
+                    "name": "constant.numeric.ecflow_def"
+                },
+                "3": {
+                    "name": "string.quoted.ecflow_def"
+                },
+                "4": {
+                    "name": "comment.line.ecflow-def"
+                }
+            },
+            "name": "keyword.other.ecflow_def"
+        }
+    }
 }

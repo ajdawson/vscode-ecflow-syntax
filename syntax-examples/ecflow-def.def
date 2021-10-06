@@ -1,5 +1,8 @@
 # A simple suite definition
 suite simple
+  defstatus queued
+  edit ECF_INCLUDE "/path/to/include"    # script path
+  edit ECF_HOME "/path/to/home"
   edit MODE 'normal'
   family main
     repeat date YMD 20200101 20201231 5
@@ -8,10 +11,10 @@ suite simple
       trigger setup == complete
   endfamily
   family lag
-    repeat date YMD 20200101 20201231 5
+    repeat date YMD 20200101 20201231 5  # repeat date
     trigger main:YMD > lag:YMD or main == complete
     task archive
     task cleanup
-      trigger archive == complete
+      trigger archive == complete        # run after archive
   endfamily
 endsuite

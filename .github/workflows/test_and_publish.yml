@@ -25,6 +25,8 @@ jobs:
           node-version: 12
       - name: Install dependencies
         run: npm install
+      - name: Run tests
+        run: npm test
       - name: Check a new build of ecflow-shell.tmLanguage.json vs. the checked in version
         run: npm run ci_consistency_check
 
